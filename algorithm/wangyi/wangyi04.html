@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+    	var str1='3{d}2{bc}';
+    	var str2 = '2{a2{c2{ofd}}}';
+
+    	acofdofdcofdofd
+    	
+
+    	// function showStr(str){
+
+    	// 	match方法：
+    	// 	var arr = str.match(/(\d{1}\{[^\{\}]*\})/g);
+    	// 	// '3{a2{d}}'.match(/(\d{1}\{[^\{\}]*\})/g);
+
+    	// 	var arr2 = str.match(/(\d{1}\{   [  [^\{\}]*    \{   [^\{\}]* \}    [^\{\}]*   ]*  \})/g);
+    	// 	// '3{a2{d}a2{d}56}2{b}'.match(/(\d{1}\{[[^\{\}]*\{[^\{\}]*\}[^\{\}]*]*\})/g);
+
+    	// }
+
+    	function showStr(str){
+    		var arr = str.split("");
+    		console.log("arr:"+arr);
+    		var brr=[];
+    		var book=[];
+    		var len=0;
+    		for(var i=0;i<arr.length;i++){
+    			if(arr[i] == '{'){
+    				len = brr.length;
+    				book.push(len);
+    				brr.push('{');
+    				console.log("brr(1):"+brr);
+    			}else if(arr[i] == '}'){
+    				var f = book.pop();
+    				var other  = brr.splice(f-1);
+    				var num = other.shift();
+    				other.shift();
+    				var newOther=other;
+    				for(var j=0;j<num-1;j++){
+    					newOther=newOther.concat(other);
+    				}
+    				brr = brr.concat(newOther);
+    			}else{
+    				brr.push(arr[i]);
+    			}
+    		}
+    		return brr.join("");
+    	}
+
+    	console.log(showStr(str1));
+    	console.log(showStr(str2));
+
+    </script>
+</head>
+
+<body>
+    
+
+</body>
+
+</html>
+
+
+
+
+
